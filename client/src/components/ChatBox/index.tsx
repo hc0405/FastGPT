@@ -216,14 +216,14 @@ const ChatBox = (
             ...item,
             ...(text
               ? {
-                  value: item.value + text
-                }
+                value: item.value + text
+              }
               : {}),
             ...(status && name
               ? {
-                  status,
-                  moduleName: name
-                }
+                status,
+                moduleName: name
+              }
               : {})
           };
         })
@@ -715,7 +715,7 @@ const ChatBox = (
               _focusVisible={{
                 border: 'none'
               }}
-              placeholder="提问"
+              placeholder="提問"
               resize={'none'}
               rows={1}
               height={'22px'}
@@ -792,9 +792,8 @@ export const useChatBox = () => {
         const historyDom = document.getElementById('history');
         if (!historyDom) return;
         const dom = Array.from(historyDom.children).map((child, i) => {
-          const avatar = `<img src="${
-            child.querySelector<HTMLImageElement>('.avatar')?.src
-          }" alt="" />`;
+          const avatar = `<img src="${child.querySelector<HTMLImageElement>('.avatar')?.src
+            }" alt="" />`;
 
           const chatContent = child.querySelector<HTMLDivElement>('.markdown');
 
