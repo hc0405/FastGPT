@@ -22,7 +22,7 @@ export type CQResponse = {
   [key: string]: any;
 };
 
-const agentModel = 'gpt-3.5-turbo';
+const agentModel = 'gpt-4';
 const agentFunName = 'agent_user_question';
 const maxTokens = 3000;
 
@@ -37,11 +37,11 @@ export const dispatchClassifyQuestion = async (props: Record<string, any>): Prom
   const messages: ChatItemType[] = [
     ...(systemPrompt
       ? [
-          {
-            obj: ChatRoleEnum.System,
-            value: systemPrompt
-          }
-        ]
+        {
+          obj: ChatRoleEnum.System,
+          value: systemPrompt
+        }
+      ]
       : []),
     ...history,
     {
