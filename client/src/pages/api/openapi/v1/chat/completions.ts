@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDatabase } from '@/service/mongo';
 import { authUser, authApp, authShareChat, AuthUserTypeEnum } from '@/service/utils/auth';
 import { sseErrRes, jsonRes } from '@/service/response';
-import { withNextCors } from '@/service/utils/tools';
+import { addLog, withNextCors } from '@/service/utils/tools';
 import { ChatRoleEnum, ChatSourceEnum, sseResponseEventEnum } from '@/constants/chat';
 import {
   dispatchHistory,
@@ -28,7 +28,7 @@ import { BillSourceEnum } from '@/constants/user';
 import { ChatHistoryItemResType } from '@/types/chat';
 import { UserModelSchema } from '@/types/mongoSchema';
 
-export type MessageItemType = ChatCompletionRequestMessage & { _id?: string };
+export type MessageItemType = ChatCompletionRequestMessage & { dataId?: string };
 type FastGptWebChatProps = {
   chatId?: string; // undefined: nonuse history, '': new chat, 'xxxxx': use history
   appId?: string;
@@ -94,9 +94,9 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
     if (!user) {
       throw new Error('Account is error');
     }
-    if (authType === AuthUserTypeEnum.apikey || shareId) {
-      user.openaiAccount = undefined;
-    }
+    // if (authType === AuthUserTypeEnum.apikey || shareId) {
+    //   user.openaiAccount = undefined;
+    // }
 
     appId = appId ? appId : authAppid;
     if (!appId) {
@@ -172,7 +172,7 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
         content: [
           prompt,
           {
-            _id: messages[messages.length - 1]._id,
+            dataId: messages[messages.length - 1].dataId,
             obj: ChatRoleEnum.AI,
             value: answerText,
             responseData
@@ -181,7 +181,7 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
       });
     }
 
-    console.log(`finish time: ${(Date.now() - startTime) / 1000}s`);
+    addLog.info(`completions running time: ${(Date.now() - startTime) / 1000}s`);
 
     if (stream) {
       sseResponse({
@@ -351,6 +351,7 @@ export async function dispatchModules({
       res,
       stream,
       detail,
+      outputs: module.outputs,
       userOpenaiAccount: user?.openaiAccount,
       ...params
     };

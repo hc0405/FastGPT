@@ -17,6 +17,7 @@ import { ChatModelItemType } from '@/types/model';
 import { UserModelSchema } from '@/types/mongoSchema';
 import { textCensor } from '@/service/api/plugins';
 import { ChatCompletionRequestMessageRoleEnum } from 'openai';
+import { AppModuleItemType } from '@/types/app';
 
 export type ChatProps = {
   res: NextApiResponse;
@@ -31,6 +32,7 @@ export type ChatProps = {
   systemPrompt?: string;
   limitPrompt?: string;
   userOpenaiAccount: UserModelSchema['openaiAccount'];
+  outputs: AppModuleItemType['outputs'];
 };
 export type ChatResponse = {
   [TaskResponseKeyEnum.answerText]: string;
@@ -52,8 +54,12 @@ export const dispatchChatCompletion = async (props: Record<string, any>): Promis
     userChatInput,
     systemPrompt = '',
     limitPrompt = '',
-    userOpenaiAccount
+    userOpenaiAccount,
+    outputs
   } = props as ChatProps;
+  if (!userChatInput) {
+    return Promise.reject('Question is empty');
+  }
 
   // temperature adapt
   const modelConstantsData = getChatModel(model);
@@ -63,7 +69,6 @@ export const dispatchChatCompletion = async (props: Record<string, any>): Promis
   }
 
   const { filterQuoteQA, quotePrompt } = filterQuote({
-    history,
     quoteQA,
     model: modelConstantsData
   });
@@ -91,6 +96,7 @@ export const dispatchChatCompletion = async (props: Record<string, any>): Promis
     maxToken,
     filterMessages
   });
+  // console.log(messages);
 
   // FastGpt temperature range: 1~10
   temperature = +(modelConstantsData.maxTemperature * (temperature / 10)).toFixed(2);
@@ -142,6 +148,8 @@ export const dispatchChatCompletion = async (props: Record<string, any>): Promis
         messages: completeMessages
       });
 
+      targetResponse({ res, detail, outputs });
+
       return {
         answerText: answer,
         totalTokens,
@@ -182,40 +190,31 @@ export const dispatchChatCompletion = async (props: Record<string, any>): Promis
 };
 
 function filterQuote({
-  history = [],
   quoteQA = [],
   model
 }: {
-  history: ChatProps['history'];
   quoteQA: ChatProps['quoteQA'];
   model: ChatModelItemType;
 }) {
-  // concat history quote
-  const historyQuote =
-    history[history.length - 1]?.responseData
-      ?.find((item) => item.moduleName === ChatModuleEnum.AIChat)
-      ?.quoteList?.filter((item) => !quoteQA.find((quote) => quote.id === item.id)) || [];
-  const concatQuote = quoteQA.concat(historyQuote.slice(0, 3));
-
   const sliceResult = modelToolMap.tokenSlice({
     model: model.model,
     maxToken: model.quoteMaxToken,
-    messages: concatQuote.map((item, i) => ({
+    messages: quoteQA.map((item) => ({
       obj: ChatRoleEnum.System,
-      value: item.a ? `{instruction:${item.q},output:${item.a}}` : `{instruction:${item.q}}`
+      value: item.a ? `{user:${item.q},assistant:${item.a}}` : `{instruction:${item.q}}`
     }))
   });
 
   // slice filterSearch
-  const filterQuoteQA = concatQuote.slice(0, sliceResult.length);
+  const filterQuoteQA = quoteQA.slice(0, sliceResult.length);
 
   const quotePrompt =
     filterQuoteQA.length > 0
-      ? `下面是知识库内容:
-${filterQuoteQA
-  .map((item) => (item.a ? `{instruction:${item.q},output:${item.a}}` : `{instruction:${item.q}}`))
-  .join('\n')}
-`
+      ? `${filterQuoteQA
+          .map((item) =>
+            item.a ? `{user:${item.q},assistant:${item.a}}` : `{instruction:${item.q}}`
+          )
+          .join('\n')}`
       : '';
 
   return {
@@ -241,7 +240,7 @@ function getChatMessages({
   const limitText = (() => {
     if (limitPrompt) return limitPrompt;
     if (quotePrompt && !limitPrompt) {
-      return '严格按照知识库提供的内容回答，不要做过多补充。';
+      return '根据我上文提供的内容回答下面问题，不要进行额外补充。';
     }
     return '';
   })();
@@ -311,6 +310,28 @@ function getMaxTokens({
   return {
     max_tokens: maxToken
   };
+}
+
+function targetResponse({
+  res,
+  outputs,
+  detail
+}: {
+  res: NextApiResponse;
+  outputs: AppModuleItemType['outputs'];
+  detail: boolean;
+}) {
+  const targets =
+    outputs.find((output) => output.key === TaskResponseKeyEnum.answerText)?.targets || [];
+
+  if (targets.length === 0) return;
+  sseResponse({
+    res,
+    event: detail ? sseResponseEventEnum.answer : undefined,
+    data: textAdaptGptResponse({
+      text: '\n'
+    })
+  });
 }
 
 async function streamResponse({
