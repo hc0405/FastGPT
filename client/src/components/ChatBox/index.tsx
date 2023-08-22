@@ -543,7 +543,7 @@ const ChatBox = (
                       setVariables(data);
                     })}
                   >
-                    {'开始对话'}
+                    {t('chatbox.Start to Chat')}
                   </Button>
                 )}
               </Card>
@@ -569,7 +569,7 @@ const ChatBox = (
                   <>
                     <Flex w={'100%'} alignItems={'center'} justifyContent={'flex-end'}>
                       <Flex {...controlContainerStyle} justifyContent={'flex-end'} mr={3}>
-                        <MyTooltip label={'复制'}>
+                        <MyTooltip label={t('common.Copy')}>
                           <MyIcon
                             {...controlIconStyle}
                             name={'copy'}
@@ -617,7 +617,7 @@ const ChatBox = (
                     <Flex w={'100%'} alignItems={'flex-end'}>
                       <ChatAvatar src={appAvatar} type={'AI'} />
                       <Flex {...controlContainerStyle} ml={3}>
-                        <MyTooltip label={'复制'}>
+                        <MyTooltip label={t('common.Copy')}>
                           <MyIcon
                             {...controlIconStyle}
                             name={'copy'}
@@ -644,7 +644,7 @@ const ChatBox = (
                           </MyTooltip>
                         )}
                         {hasVoiceApi && (
-                          <MyTooltip label={'语音播报'}>
+                          <MyTooltip label={t('chatbox.Voice')}>
                             <MyIcon
                               {...controlIconStyle}
                               name={'voice'}

@@ -141,5 +141,9 @@
     "Update password failed": "Update password failed",
     "Update password succseful": "Update password succseful",
     "Usage Record": "Usage"
+  },
+  "chatbox": {
+    "Start to Chat": "Start to chat",
+    "Voice": "Voice"
   }
 }

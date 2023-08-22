@@ -141,5 +141,9 @@
     "Update password failed": "修改密码异常",
     "Update password succseful": "修改密码成功",
     "Usage Record": "使用记录"
+  },
+  "chatbox": {
+    "Start to Chat": "開始對話",
+    "Voice": "語音播報"
   }
 }
