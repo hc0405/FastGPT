@@ -71,6 +71,7 @@ const map = {
   chatModelTag: require('./icons/light/chatModelTag.svg').default,
   language_en: require('./icons/language/en.svg').default,
   language_zh: require('./icons/language/zh.svg').default,
+  language_zh_tw: require('./icons/language/zh.svg').default,
   outlink_share: require('./icons/outlink/share.svg').default,
   outlink_iframe: require('./icons/outlink/iframe.svg').default,
   addCircle: require('./icons/circle/add.svg').default,

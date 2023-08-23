@@ -4,7 +4,8 @@ import Cookies from 'js-cookie';
 export const LANG_KEY = 'NEXT_LOCALE_LANG';
 export enum LangEnum {
   'zh' = 'zh',
-  'en' = 'en'
+  'en' = 'en',
+  'zh_TW' = 'zh_TW'
 }
 
 export const setLangStore = (value: `${LangEnum}`) => {

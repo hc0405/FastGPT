@@ -12,6 +12,10 @@ const langMap = {
   [LangEnum.zh]: {
     label: '简体中文',
     icon: 'language_zh'
+  },
+  [LangEnum.zh_TW]: {
+    label: '繁體中文',
+    icon: 'language_zh_tw'
   }
 };
 
