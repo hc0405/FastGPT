@@ -16,7 +16,7 @@ import Loading from '@/components/Loading';
 import BasicEdit from './components/BasicEdit';
 import { serviceSideProps } from '@/utils/i18n';
 import { useTranslation } from 'react-i18next';
-const { t } = useTranslation();
+
 const AdEdit = dynamic(() => import('./components/AdEdit'), {
   ssr: false,
   loading: () => <Loading />
@@ -39,7 +39,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
   const router = useRouter();
   const theme = useTheme();
   const { toast } = useToast();
-
+  const { t } = useTranslation();
   const { appId } = router.query as { appId: string };
   const { appDetail = defaultApp, loadAppDetail, clearAppModules } = useUserStore();
 
