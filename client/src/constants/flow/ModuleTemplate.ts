@@ -109,11 +109,11 @@ export const HistoryModule: FlowModuleTemplateType = {
     }
   ]
 };
-const { i18n } = useTranslation();
+//const { i18n } = useTranslation();
 export const ChatModule: FlowModuleTemplateType = {
 
   logo: '/imgs/module/AI.png',
-  name: i18n('chatbox.AI Chat'),
+  name: useTranslation('chatbox.AI Chat'),
   intro: 'AI 大模型对话',
   flowType: FlowModuleTypeEnum.chatNode,
   showStatus: true,
@@ -590,7 +590,7 @@ export const appTemplates: (AppItemType & { avatar: string; intro: string })[] =
       },
       {
         moduleId: 'chatModule',
-        name: i18n('chatbox.AI Chat'),
+        name: useTranslation('chatbox.AI Chat'),
         flowType: 'chatNode',
         showStatus: true,
         position: {
@@ -938,7 +938,7 @@ export const appTemplates: (AppItemType & { avatar: string; intro: string })[] =
       },
       {
         moduleId: 'chatModule',
-        name: i18n('chatbox.AI Chat'),
+        name: useTranslation('chatbox.AI Chat'),
         flowType: 'chatNode',
         showStatus: true,
         position: {
@@ -1628,7 +1628,7 @@ export const appTemplates: (AppItemType & { avatar: string; intro: string })[] =
       },
       {
         moduleId: 'nlfwkc',
-        name: 'AI 对话',
+        name: i18n('chatbox.AI Chat'),
         flowType: 'chatNode',
         showStatus: true,
         position: {
