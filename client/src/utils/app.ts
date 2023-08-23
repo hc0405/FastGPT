@@ -10,7 +10,8 @@ import { SystemInputEnum } from '@/constants/app';
 import { TaskResponseKeyEnum } from '@/constants/chat';
 import type { SelectedKbType } from '@/types/plugin';
 import { FlowInputItemType } from '@/types/flow';
-
+import { useTranslation } from 'react-i18next';
+const { i18n } = useTranslation();
 export type EditFormType = {
   chatModel: {
     model: string;
@@ -218,50 +219,50 @@ const chatModelInput = (formData: EditFormType): FlowInputItemType[] => [
 const welcomeTemplate = (formData: EditFormType): AppModuleItemType[] =>
   formData.guide?.welcome?.text
     ? [
-        {
-          name: '用户引导',
-          flowType: FlowModuleTypeEnum.userGuide,
-          inputs: [
-            {
-              key: 'welcomeText',
-              type: 'input',
-              label: '开场白',
-              value: formData.guide.welcome.text,
-              connected: true
-            }
-          ],
-          outputs: [],
-          position: {
-            x: 447.98520778293346,
-            y: 721.4016845336229
-          },
-          moduleId: 'userGuide'
-        }
-      ]
+      {
+        name: '用户引导',
+        flowType: FlowModuleTypeEnum.userGuide,
+        inputs: [
+          {
+            key: 'welcomeText',
+            type: 'input',
+            label: '开场白',
+            value: formData.guide.welcome.text,
+            connected: true
+          }
+        ],
+        outputs: [],
+        position: {
+          x: 447.98520778293346,
+          y: 721.4016845336229
+        },
+        moduleId: 'userGuide'
+      }
+    ]
     : [];
 const variableTemplate = (formData: EditFormType): AppModuleItemType[] =>
   formData.variables.length > 0
     ? [
-        {
-          name: '全局变量',
-          flowType: FlowModuleTypeEnum.variable,
-          inputs: [
-            {
-              key: 'variables',
-              value: formData.variables,
-              type: 'systemInput',
-              label: '变量输入',
-              connected: true
-            }
-          ],
-          outputs: [],
-          position: {
-            x: 444.0369195277651,
-            y: 1008.5185781784537
-          },
-          moduleId: 'variable'
-        }
-      ]
+      {
+        name: '全局变量',
+        flowType: FlowModuleTypeEnum.variable,
+        inputs: [
+          {
+            key: 'variables',
+            value: formData.variables,
+            type: 'systemInput',
+            label: '变量输入',
+            connected: true
+          }
+        ],
+        outputs: [],
+        position: {
+          x: 444.0369195277651,
+          y: 1008.5185781784537
+        },
+        moduleId: 'variable'
+      }
+    ]
     : [];
 const simpleChatTemplate = (formData: EditFormType): AppModuleItemType[] => [
   {
@@ -328,7 +329,7 @@ const simpleChatTemplate = (formData: EditFormType): AppModuleItemType[] => [
     moduleId: 'history'
   },
   {
-    name: 'AI 对话',
+    name: i18n('chatbox.AI Chat'),
     flowType: FlowModuleTypeEnum.chatNode,
     inputs: chatModelInput(formData),
     showStatus: true,
@@ -468,17 +469,17 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
         key: 'isEmpty',
         targets: formData.kb.searchEmptyText
           ? [
-              {
-                moduleId: 'emptyText',
-                key: 'switch'
-              }
-            ]
+            {
+              moduleId: 'emptyText',
+              key: 'switch'
+            }
+          ]
           : [
-              {
-                moduleId: 'chatModule',
-                key: 'switch'
-              }
-            ]
+            {
+              moduleId: 'chatModule',
+              key: 'switch'
+            }
+          ]
       },
       {
         key: 'unEmpty',
@@ -507,36 +508,36 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
   },
   ...(formData.kb.searchEmptyText
     ? [
-        {
-          name: '指定回复',
-          flowType: FlowModuleTypeEnum.answerNode,
-          inputs: [
-            {
-              key: 'switch',
-              type: FlowInputItemTypeEnum.target,
-              label: '触发器',
-              connected: true
-            },
-            {
-              key: SpecialInputKeyEnum.answerText,
-              value: formData.kb.searchEmptyText,
-              type: FlowInputItemTypeEnum.textarea,
-              valueType: FlowValueTypeEnum.string,
-              label: '回复的内容',
-              connected: true
-            }
-          ],
-          outputs: [],
-          position: {
-            x: 1553.5815811529146,
-            y: 637.8753731306779
+      {
+        name: '指定回复',
+        flowType: FlowModuleTypeEnum.answerNode,
+        inputs: [
+          {
+            key: 'switch',
+            type: FlowInputItemTypeEnum.target,
+            label: '触发器',
+            connected: true
           },
-          moduleId: 'emptyText'
-        }
-      ]
+          {
+            key: SpecialInputKeyEnum.answerText,
+            value: formData.kb.searchEmptyText,
+            type: FlowInputItemTypeEnum.textarea,
+            valueType: FlowValueTypeEnum.string,
+            label: '回复的内容',
+            connected: true
+          }
+        ],
+        outputs: [],
+        position: {
+          x: 1553.5815811529146,
+          y: 637.8753731306779
+        },
+        moduleId: 'emptyText'
+      }
+    ]
     : []),
   {
-    name: 'AI 对话',
+    name: i18n('chatbox.AI Chat'),
     flowType: FlowModuleTypeEnum.chatNode,
     inputs: chatModelInput(formData),
     showStatus: true,
