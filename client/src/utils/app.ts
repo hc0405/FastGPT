@@ -11,7 +11,7 @@ import { TaskResponseKeyEnum } from '@/constants/chat';
 import type { SelectedKbType } from '@/types/plugin';
 import { FlowInputItemType } from '@/types/flow';
 import { useTranslation } from 'react-i18next';
-const { i18n } = useTranslation();
+const { t } = useTranslation();
 export type EditFormType = {
   chatModel: {
     model: string;
@@ -329,7 +329,7 @@ const simpleChatTemplate = (formData: EditFormType): AppModuleItemType[] => [
     moduleId: 'history'
   },
   {
-    name: i18n('chatbox.AI Chat'),
+    name: t('chatbox.AI Chat'),
     flowType: FlowModuleTypeEnum.chatNode,
     inputs: chatModelInput(formData),
     showStatus: true,
@@ -537,7 +537,7 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
     ]
     : []),
   {
-    name: i18n('chatbox.AI Chat'),
+    name: t('chatbox.AI Chat'),
     flowType: FlowModuleTypeEnum.chatNode,
     inputs: chatModelInput(formData),
     showStatus: true,
