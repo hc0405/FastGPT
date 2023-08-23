@@ -15,7 +15,8 @@ import PageContainer from '@/components/PageContainer';
 import Loading from '@/components/Loading';
 import BasicEdit from './components/BasicEdit';
 import { serviceSideProps } from '@/utils/i18n';
-
+import { useTranslation } from 'react-i18next';
+const { t } = useTranslation();
 const AdEdit = dynamic(() => import('./components/AdEdit'), {
   ssr: false,
   loading: () => <Loading />
@@ -38,6 +39,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
   const router = useRouter();
   const theme = useTheme();
   const { toast } = useToast();
+
   const { appId } = router.query as { appId: string };
   const { appDetail = defaultApp, loadAppDetail, clearAppModules } = useUserStore();
 
@@ -55,11 +57,11 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
 
   const tabList = useMemo(
     () => [
-      { label: '简易配置', id: TabEnum.basicEdit, icon: 'overviewLight' },
-      { label: '高级编排', id: TabEnum.adEdit, icon: 'settingLight' },
-      { label: '外部使用', id: TabEnum.outLink, icon: 'shareLight' },
-      { label: 'API访问', id: TabEnum.API, icon: 'apiLight' },
-      { label: '立即对话', id: 'startChat', icon: 'chat' }
+      { label: t('chatbox.Basic Edit'), id: TabEnum.basicEdit, icon: 'overviewLight' },
+      { label: t('chatbox.Advance Edit'), id: TabEnum.adEdit, icon: 'settingLight' },
+      { label: t('chatbox.Share Link'), id: TabEnum.outLink, icon: 'shareLight' },
+      { label: t('chatbox.Api Setting'), id: TabEnum.API, icon: 'apiLight' },
+      { label: t('chatbox.Start to chat'), id: 'startChat', icon: 'chat' }
     ],
     []
   );
@@ -68,10 +70,10 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
     const listen =
       process.env.NODE_ENV === 'production'
         ? (e: any) => {
-            e.preventDefault();
-            e.returnValue = '内容已修改，确认离开页面吗？';
-          }
-        : () => {};
+          e.preventDefault();
+          e.returnValue = '内容已修改，确认离开页面吗？';
+        }
+        : () => { };
     window.addEventListener('beforeunload', listen);
 
     return () => {
