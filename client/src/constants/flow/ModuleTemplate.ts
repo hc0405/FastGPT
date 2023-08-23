@@ -16,7 +16,7 @@ import {
   Input_Template_UserChatInput
 } from './inputTemplate';
 import { ContextExtractEnum, HttpPropsEnum } from './flowField';
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 
 export const ChatModelSystemTip =
   '模型固定的引导词，通过调整该内容，可以引导模型聊天方向。该内容会被固定在上下文的开头。可使用变量，例如 {{language}}';
@@ -109,11 +109,10 @@ export const HistoryModule: FlowModuleTemplateType = {
     }
   ]
 };
-const { i18n } = useTranslation();
 export const ChatModule: FlowModuleTemplateType = {
 
   logo: '/imgs/module/AI.png',
-  name: i18n('chatbox.AI Chat'),
+  name: 'AI 对话',
   intro: 'AI 大模型对话',
   flowType: FlowModuleTypeEnum.chatNode,
   showStatus: true,
@@ -590,7 +589,7 @@ export const appTemplates: (AppItemType & { avatar: string; intro: string })[] =
       },
       {
         moduleId: 'chatModule',
-        name: i18n('chatbox.AI Chat'),
+        name: 'AI 对话',
         flowType: 'chatNode',
         showStatus: true,
         position: {
@@ -938,7 +937,7 @@ export const appTemplates: (AppItemType & { avatar: string; intro: string })[] =
       },
       {
         moduleId: 'chatModule',
-        name: i18n('chatbox.AI Chat'),
+        name: 'AI 对话',
         flowType: 'chatNode',
         showStatus: true,
         position: {
@@ -1244,7 +1243,7 @@ export const appTemplates: (AppItemType & { avatar: string; intro: string })[] =
       },
       {
         moduleId: 'chatModule',
-        name: i18n('chatbox.AI Chat'),
+        name: 'AI 对话',
         flowType: 'chatNode',
         showStatus: true,
         position: {
