@@ -1245,7 +1245,7 @@ export const appTemplates: (AppItemType & { avatar: string; intro: string })[] =
       },
       {
         moduleId: 'chatModule',
-        name: i18n('chatbox.AI Chat'),
+        name: t('chatbox.AI Chat'),
         flowType: 'chatNode',
         showStatus: true,
         position: {
@@ -1629,7 +1629,7 @@ export const appTemplates: (AppItemType & { avatar: string; intro: string })[] =
       },
       {
         moduleId: 'nlfwkc',
-        name: i18n('chatbox.AI Chat'),
+        name: t('chatbox.AI Chat'),
         flowType: 'chatNode',
         showStatus: true,
         position: {
