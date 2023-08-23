@@ -143,7 +143,11 @@
         "Usage Record": "使用記錄"
     },
     "chatbox": {
-        "Start to Chat": "開始對話",
-        "Voice": "語音播報"
+        "Start to chat": "立即對話",
+        "Voice": "語音播報",
+        "Basic Edit": "簡易配置",
+        "Advance Edit": "高級編排",
+        "Share Link": "外部使用",
+        "Api Setting": "API訪問"
     }
 }

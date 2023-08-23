@@ -13,7 +13,7 @@ export const setLangStore = (value: `${LangEnum}`) => {
 };
 
 export const getLangStore = () => {
-  return (Cookies.get(LANG_KEY) as `${LangEnum}`) || LangEnum.zh;
+  return (Cookies.get(LANG_KEY) as `${LangEnum}`) || LangEnum.zh_TW;
 };
 
 export const serviceSideProps = (content: any) => {

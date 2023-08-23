@@ -51,7 +51,7 @@ function App({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
-    const lang = getLangStore() || 'zh';
+    const lang = getLangStore() || 'zh_TW';
     i18n?.changeLanguage?.(lang);
   }, [router.asPath]);
 

@@ -144,6 +144,10 @@
   },
   "chatbox": {
     "Start to Chat": "Start to chat",
-    "Voice": "Voice"
+    "Voice": "Voice",
+    "Basic Edit": "Basic Edit",
+    "Advance Edit": "Advance Edit",
+    "Share Link": "Share Link",
+    "Api Setting": "Api Setting"
   }
 }
