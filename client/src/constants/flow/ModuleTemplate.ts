@@ -16,8 +16,8 @@ import {
   Input_Template_UserChatInput
 } from './inputTemplate';
 import { ContextExtractEnum, HttpPropsEnum } from './flowField';
-//import { useTranslation } from 'react-i18next';
-//const { t } = useTranslation();
+import { useTranslation } from 'next-i18next';
+const { t } = useTranslation();
 
 export const ChatModelSystemTip =
   '模型固定的引导词，通过调整该内容，可以引导模型聊天方向。该内容会被固定在上下文的开头。可使用变量，例如 {{language}}';
@@ -113,7 +113,7 @@ export const HistoryModule: FlowModuleTemplateType = {
 export const ChatModule: FlowModuleTemplateType = {
 
   logo: '/imgs/module/AI.png',
-  name: 'AI 对话',
+  name: t('chatbox.AI Chat'),
   intro: 'AI 大模型对话',
   flowType: FlowModuleTypeEnum.chatNode,
   showStatus: true,
