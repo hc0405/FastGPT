@@ -719,7 +719,7 @@ const ChatBox = (
               _focusVisible={{
                 border: 'none'
               }}
-              placeholder={t('chatbox.Question')}
+              placeholder='提問'
               resize={'none'}
               rows={1}
               height={'22px'}
