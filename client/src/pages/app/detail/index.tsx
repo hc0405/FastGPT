@@ -44,6 +44,10 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
   const { appId } = router.query as { appId: string };
   const { appDetail = defaultApp, loadAppDetail, clearAppModules } = useUserStore();
 
+  const lang = 'zh_TW';
+  i18n?.changeLanguage?.(lang);
+  setLangStore(lang);
+
   const setCurrentTab = useCallback(
     (tab: `${TabEnum}`) => {
       router.replace({
@@ -62,7 +66,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
       { label: t('chatbox.Advance Edit'), id: TabEnum.adEdit, icon: 'settingLight' },
       { label: t('chatbox.Share Link'), id: TabEnum.outLink, icon: 'shareLight' },
       { label: t('chatbox.Api Setting'), id: TabEnum.API, icon: 'apiLight' },
-      { label: t('chatbox.Start to Ｃhat'), id: 'startChat', icon: 'chat' }
+      { label: t('chatbox.Start to Chat'), id: 'startChat', icon: 'chat' }
     ],
     []
   );
@@ -95,11 +99,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
       router.prefetch(`/chat?appId=${appId}`);
     }
   });
-  useEffect(() => {
-    const lang = getLangStore() || 'zh_TW';
-    i18n?.changeLanguage?.(lang);
-    setLangStore(lang);
-  }, [router.asPath]);
+
 
   return (
     <PageContainer>
@@ -152,7 +152,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
               borderRadius={'50%'}
               aria-label={''}
             />
-            我的应用
+            我的應用
           </Flex>
         </Box>
         {/* phone tab */}

@@ -44,7 +44,7 @@ const ResponseTags = ({
     };
   }, [responseData]);
 
-  const updateQuote = useCallback(async (quoteId: string, sourceText: string) => {}, []);
+  const updateQuote = useCallback(async (quoteId: string, sourceText: string) => { }, []);
 
   const TagStyles: BoxProps = {
     mr: 2,
@@ -61,19 +61,19 @@ const ResponseTags = ({
             {...TagStyles}
             onClick={() => setQuoteModalData(quoteList)}
           >
-            {quoteList.length}条引用
+            {quoteList.length}條引用
           </Tag>
         </MyTooltip>
       )}
       {completeMessages.length > 0 && (
-        <MyTooltip label={'点击查看完整对话记录'}>
+        <MyTooltip label={'點擊查看完整對話記錄'}>
           <Tag
             colorSchema="green"
             cursor={'pointer'}
             {...TagStyles}
             onClick={() => setContextModalData(completeMessages)}
           >
-            {completeMessages.length}条上下文
+            {completeMessages.length}條上下文
           </Tag>
         </MyTooltip>
       )}
@@ -82,7 +82,7 @@ const ResponseTags = ({
           {tokens}Tokens
         </Tag>
       )}
-      <MyTooltip label={'点击查看完整响应值'}>
+      <MyTooltip label={'點擊查看完整響應值'}>
         <Tag colorSchema="gray" cursor={'pointer'} {...TagStyles} onClick={onOpenWholeModal}>
           {t('chat.Complete Response')}
         </Tag>

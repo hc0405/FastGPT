@@ -39,7 +39,7 @@ const ResponseModal = ({
           {t('chat.Complete Response')}
           <MyTooltip
             label={
-              'moduleName: 模型名\nprice: 价格，倍率：100000\nmodel?: 模型名\ntokens?: token 消耗\n\nanswer?: 回答内容\nquestion?: 问题\ntemperature?: 温度\nmaxToken?: 最大 tokens\n\nsimilarity?: 相似度\nlimit?: 单次搜索结果\n\ncqList?: 问题分类列表\ncqResult?: 分类结果\n\nextractDescription?: 内容提取描述\nextractResult?: 提取结果'
+              'moduleName: 模型名\nprice: 價格，倍率：100000\nmodel?: 模型名\ntokens?: token 消耗\n\nanswer?: 回答內容\nquestion?: 問題\ntemperature?: 溫度\nmaxToken?: 最大 tokens\n\nsimilarity?: 相似度\nlimit?: 單次搜索結果\n\ncqList?: 問題分類列表\ncqResult?: 分類結果\n\nextractDescription?: 內容提取描述\nextractResult?: 提取結果'
             }
           >
             <QuestionOutlineIcon ml={2} />

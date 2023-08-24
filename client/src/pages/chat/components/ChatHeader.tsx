@@ -27,7 +27,7 @@ const ChatHeader = ({
   const theme = useTheme();
   const { isPc } = useGlobalStore();
   const title = useMemo(
-    () => history[history.length - 2]?.value?.slice(0, 8) || appName || '新对话',
+    () => history[history.length - 2]?.value?.slice(0, 8) || appName || '新對話',
     [appName, history]
   );
 
@@ -47,7 +47,7 @@ const ChatHeader = ({
           </Box>
           <Tag>
             <MyIcon name={'history'} w={'14px'} />
-            <Box ml={1}>{history.length === 0 ? '新的对话' : `${history.length}条记录`}</Box>
+            <Box ml={1}>{history.length === 0 ? '新的對話' : `${history.length}條記錄`}</Box>
           </Tag>
           {!!chatModels && (
             <Tag ml={2} colorSchema={'green'}>
