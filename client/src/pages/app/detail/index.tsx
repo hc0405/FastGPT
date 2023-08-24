@@ -16,6 +16,7 @@ import Loading from '@/components/Loading';
 import BasicEdit from './components/BasicEdit';
 import { serviceSideProps } from '@/utils/i18n';
 import { useTranslation } from 'react-i18next';
+import { getLangStore, setLangStore } from '@/utils/i18n';
 
 const AdEdit = dynamic(() => import('./components/AdEdit'), {
   ssr: false,
@@ -39,7 +40,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
   const router = useRouter();
   const theme = useTheme();
   const { toast } = useToast();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { appId } = router.query as { appId: string };
   const { appDetail = defaultApp, loadAppDetail, clearAppModules } = useUserStore();
 
@@ -61,7 +62,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
       { label: t('chatbox.Advance Edit'), id: TabEnum.adEdit, icon: 'settingLight' },
       { label: t('chatbox.Share Link'), id: TabEnum.outLink, icon: 'shareLight' },
       { label: t('chatbox.Api Setting'), id: TabEnum.API, icon: 'apiLight' },
-      { label: t('chatbox.Start to chat'), id: 'startChat', icon: 'chat' }
+      { label: t('chatbox.Start to Ｃhat'), id: 'startChat', icon: 'chat' }
     ],
     []
   );
@@ -94,6 +95,11 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
       router.prefetch(`/chat?appId=${appId}`);
     }
   });
+  useEffect(() => {
+    const lang = getLangStore() || 'zh_TW';
+    i18n?.changeLanguage?.(lang);
+    setLangStore(lang);
+  }, [router.asPath]);
 
   return (
     <PageContainer>
