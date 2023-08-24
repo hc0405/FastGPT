@@ -266,7 +266,7 @@ const ChatBox = (
     async (variables: Record<string, any> = {}, inputVal = '') => {
       if (isChatting) {
         toast({
-          title: '正在聊天中...请等待结束',
+          title: t('chatbox.Chating'),
           status: 'warning'
         });
         return;
@@ -718,7 +718,7 @@ const ChatBox = (
               _focusVisible={{
                 border: 'none'
               }}
-              placeholder="提問"
+              placeholder={t('chatbox.Question')}
               resize={'none'}
               rows={1}
               height={'22px'}
@@ -835,7 +835,7 @@ export const useChatBox = () => {
             fileDownload({
               text: html,
               type: 'text/html',
-              filename: '聊天记录.html'
+              filename: 'ChatRecord.html'
             });
         },
         pdf: () => {
@@ -845,7 +845,7 @@ export const useChatBox = () => {
             // @ts-ignore
             html2pdf(html, {
               margin: 0,
-              filename: `聊天记录.pdf`
+              filename: `ChatRecord.pdf`
             });
         }
       };

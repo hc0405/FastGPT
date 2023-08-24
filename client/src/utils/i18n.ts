@@ -18,7 +18,7 @@ export const getLangStore = () => {
 
 export const serviceSideProps = (content: any) => {
   return serverSideTranslations(
-    content.req.cookies[LANG_KEY] || 'en',
+    content.req.cookies[LANG_KEY] || 'zh_TW',
     undefined,
     null,
     content.locales

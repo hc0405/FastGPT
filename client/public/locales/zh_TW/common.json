@@ -119,17 +119,26 @@
     },
     "user": {
         "Account": "賬號",
+        "Amount of earnings": "收益（￥）",
+        "Amount of inviter": "累計邀請人數",
         "Application Name": "應用名",
         "Avatar": "頭像",
         "Balance": "余額",
         "Bill Detail": "賬單詳情",
         "Change": "變更",
+        "Copy invite url": "覆制邀請鏈接",
+        "Invite Url": "邀請鏈接",
+        "Invite url tip": "通過該鏈接注冊的好友將永久與你綁定，其充值時你會獲得一定余額獎勵。\n此外，好友使用手機號注冊時，你將立即獲得 5 元獎勵。",
         "Notice": "通知",
         "Old password is error": "舊密碼錯誤",
         "OpenAI Account Setting": "OpenAI 賬號配置",
         "Password": "密碼",
         "Pay": "充值",
         "Personal Information": "個人信息",
+        "Promotion": "",
+        "Promotion Rate": "返現比例",
+        "Promotion Record": "推廣記錄",
+        "Promotion rate tip": "好友充值時你將獲得一定比例的余額獎勵",
         "Recharge Record": "充值記錄",
         "Replace": "更換",
         "Set OpenAI Account Failed": "設置 OpenAI 賬號異常",
@@ -140,7 +149,11 @@
         "Update Password": "修改密碼",
         "Update password failed": "修改密碼異常",
         "Update password succseful": "修改密碼成功",
-        "Usage Record": "使用記錄"
+        "Usage Record": "使用記錄",
+        "promotion": {
+            "register": "好友注冊",
+            "pay": "好友充值"
+        }
     },
     "chatbox": {
         "Start to chat": "立即對話",
@@ -149,6 +162,8 @@
         "Advance Edit": "高級編排",
         "Share Link": "外部使用",
         "Api Setting": "API訪問",
-        "AI Chat": "AI 對話"
+        "AI Chat": "AI 對話",
+        "Chating": "正在聊天中...請等待結束",
+        "Question": "發問"
     }
 }

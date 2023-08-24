@@ -162,5 +162,8 @@
     "Advance Edit": "高级编排",
     "Share Link": "外部使用",
     "Api Setting": "API访问",
-    "AI Chat": "AI 对话"
+    "AI Chat": "AI 对话",
+    "Chating": "正在聊天中...请等待结束",
+    "Question": "提問"
   }
+}
