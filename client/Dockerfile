@@ -25,7 +25,6 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm cache clean --force
 RUN npm install -g pnpm
-RUN pnpm store prune
 RUN \
   [ -f pnpm-lock.yaml ] && (pnpm --offline install && pnpm run build) || \
   (echo "Lockfile not found." && exit 1) 
