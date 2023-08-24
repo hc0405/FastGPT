@@ -545,7 +545,7 @@ const ChatBox = (
                       setVariables(data);
                     })}
                   >
-                    {t('chatbox.Start to Chat')}
+                    {t('chatbox.Start Chat')}
                   </Button>
                 )}
               </Card>

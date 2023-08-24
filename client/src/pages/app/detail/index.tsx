@@ -66,7 +66,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
       { label: t('chatbox.Advance Edit'), id: TabEnum.adEdit, icon: 'settingLight' },
       { label: t('chatbox.Share Link'), id: TabEnum.outLink, icon: 'shareLight' },
       { label: t('chatbox.Api Setting'), id: TabEnum.API, icon: 'apiLight' },
-      { label: t('chatbox.Start to Chat'), id: 'startChat', icon: 'chat' }
+      { label: t('chatbox.Start Chat'), id: 'startChat', icon: 'chat' }
     ],
     []
   );
