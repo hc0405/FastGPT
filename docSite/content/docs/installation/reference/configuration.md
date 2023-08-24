@@ -1,7 +1,7 @@
 ---
-title: "配置详解"
-description: "FastGPT 配置参数介绍"
-icon: "settings"
+title: '配置文件介绍'
+description: 'FastGPT 配置参数介绍'
+icon: 'settings'
 draft: false
 toc: true
 weight: 751
@@ -9,14 +9,12 @@ weight: 751
 
 由于环境变量不利于配置复杂的内容，新版 FastGPT 采用了 ConfigMap 的形式挂载配置文件，你可以在 `client/data/config.json` 看到默认的配置文件。可以参考 [docker-compose 快速部署](/docs/installation/docker/) 来挂载配置文件。
 
-开发环境下，你需要将示例配置文件 `config.json` 复制成 `config.local.json` 文件才会生效。
-
-注意: 为了方便介绍，文档介绍里会把注释写到 json 文件，实际运行时候 json 文件不能包含注释。
+**开发环境下**，你需要将示例配置文件 `config.json` 复制成 `config.local.json` 文件才会生效。
 
 这个配置文件中包含了前端页面定制、系统级参数、AI 对话的模型等……
 
 {{% alert context="warning" %}}
-注意：下面的配置介绍仅是局部介绍，你需要完整挂载整个 `config.json`，不能仅挂载一部分。你可以直接在默认的 config.json 基础上根据下面的介绍进行修改。
+注意：下面的配置介绍仅是局部介绍，你需要完整挂载整个 `config.json`，不能仅挂载一部分。你可以直接在默认的 config.json 基础上根据下面的介绍进行修改。挂载上去的配置文件不能包含注释。
 {{% /alert %}}
 
 ## 基础字段粗略说明

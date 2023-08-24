@@ -10,7 +10,7 @@ import NProgress from 'nprogress'; //nprogress module
 import Router from 'next/router';
 import { clientInitData, feConfigs } from '@/store/static';
 import { appWithTranslation, useTranslation } from 'next-i18next';
-import { getLangStore } from '@/utils/i18n';
+import { getLangStore, setLangStore } from '@/utils/i18n';
 import { useRouter } from 'next/router';
 
 import 'nprogress/nprogress.css';
@@ -35,6 +35,7 @@ const queryClient = new QueryClient({
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const { hiId } = router.query as { hiId?: string };
   const { i18n } = useTranslation();
 
   const [scripts, setScripts] = useState<FeConfigsType['scripts']>([]);
@@ -51,8 +52,13 @@ function App({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
+    hiId && localStorage.setItem('inviterId', hiId);
+  }, [hiId]);
+
+  useEffect(() => {
     const lang = getLangStore() || 'zh_TW';
     i18n?.changeLanguage?.(lang);
+    setLangStore(lang);
   }, [router.asPath]);
 
   return (
