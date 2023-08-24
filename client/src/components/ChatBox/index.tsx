@@ -55,7 +55,7 @@ import styles from './index.module.scss';
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz1234567890', 24);
 
 const textareaMinH = '22px';
-const { t } = useTranslation();
+
 type generatingMessageProps = { text?: string; name?: string; status?: 'running' | 'finish' };
 export type StartChatFnProps = {
   chatList: ChatSiteItemType[];
@@ -153,7 +153,7 @@ const ChatBox = (
   const ChatBoxRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const router = useRouter();
-
+  const { t } = useTranslation();
   const { copyData } = useCopyData();
   const { toast } = useToast();
   const { isPc } = useGlobalStore();
@@ -265,6 +265,7 @@ const ChatBox = (
    */
   const sendPrompt = useCallback(
     async (variables: Record<string, any> = {}, inputVal = '') => {
+      const { t } = useTranslation();
       if (isChatting) {
         toast({
           title: t('chatbox.Chating'),
