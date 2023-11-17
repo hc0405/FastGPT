@@ -8,7 +8,7 @@
     "systemTitle": "FastGPT",
     "authorText": "Made by FastGPT Team.",
     "gitLoginKey": "",
-    "scripts": []
+    "scripts": [ ]
   },
   "SystemParams": {
     "gitLoginSecret": "",
@@ -38,6 +38,33 @@
     {
       "model": "gpt-4",
       "name": "GPT4-8k",
+      "contextMaxToken": 8000,
+      "quoteMaxToken": 4000,
+      "maxTemperature": 1.2,
+      "price": 0,
+      "defaultSystem": ""
+    },
+    {
+      "model": "gpt-4-1106-preview",
+      "name": "GPT4-1106-preview",
+      "contextMaxToken": 8000,
+      "quoteMaxToken": 4000,
+      "maxTemperature": 1.2,
+      "price": 0,
+      "defaultSystem": ""
+    },
+    {
+      "model": "gpt-4-0613",
+      "name": "gpt4-0613",
+      "contextMaxToken": 8000,
+      "quoteMaxToken": 4000,
+      "maxTemperature": 1.2,
+      "price": 0,
+      "defaultSystem": ""
+    },
+    {
+      "model": "gpt-4-0613",
+      "name": "gpt4-0613",
       "contextMaxToken": 8000,
       "quoteMaxToken": 4000,
       "maxTemperature": 1.2,
